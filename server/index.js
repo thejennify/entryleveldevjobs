@@ -5,7 +5,9 @@ const port = process.env.PORT || 3000;
 
 //REDIS CONFIG
 const redis = require("redis");
-const client = redis.createClient();
+const client = redis.createClient({
+  
+});
 //allows asynchronous methods when using redis
 const { promisify } = require("util");
 const getAsync = promisify(client.get).bind(client);
