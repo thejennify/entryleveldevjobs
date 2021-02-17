@@ -8,6 +8,10 @@ const redis = require("redis");
 const client = redis.createClient({
   port: process.env.REDISCLOUD,
 });
+
+client.on('error', function(err) {
+  console.log('Redis error: ' + err);
+});
 //allows asynchronous methods when using redis
 const { promisify } = require("util");
 const getAsync = promisify(client.get).bind(client);
