@@ -1,6 +1,6 @@
 const axios = require('axios'),
       redis = require("redis"),
-      client = redis.createClient(),
+      client = redis.createClient(process.env.REDISCLOUD_URL, {no_ready_check: true}),
       { promisify } = require("util"), //Node Redis currently doesn't natively support promises, using promisify to wrap the methods.
       setAsync = promisify(client.set).bind(client);
       //getAsync('github').then(console.log).catch(console.error);
