@@ -19,7 +19,6 @@ app.use(cors());
 app.use(express.static(path.join(__dirname,'..', 'build')));
 
 //ROUTES
-
 app.get('/jobs', async(req, res) => {
   const jobs = await getAsync('github');
   const jobsJSON = JSON.parse(jobs)

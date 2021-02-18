@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.main`
+export const Container = styled.div`
+margin: 0
+padding: 0
+width: 100vw;
+`;
+
+export const Wrapper = styled.main`
    margin: 0 2rem;
    z-index: 0;
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GlobalStyle from './components/styles/globalStyle';
 import Landing from './components/landing-page';
 import Jobs from './components/jobs';
@@ -51,15 +51,16 @@ export default function App() {
       );
       return setJobs(filteredJobs) 
   }
+  
 
   //sort jobs 
   const sortJobs = (searchOrder) => {
       const formattedOrder = searchOrder.toLowerCase().replace(/\s+/g, "");
       //sorts filtered jobs
       const sortedJobs = allJobs.slice().sort((a, b) => 
-      formattedOrder === 'newest jobs'.toLowerCase().replace(/\s+/g, "") ? 
+      formattedOrder === 'newest'.toLowerCase().replace(/\s+/g, "") ? 
           a.created_at < b.created_at? 1: -1
-      :formattedOrder === 'oldest jobs'.toLowerCase().replace(/\s+/g, "") ? 
+      :formattedOrder === 'oldest'.toLowerCase().replace(/\s+/g, "") ? 
           a.created_at > b.create_at? 1: -1
       :a.id < b.id ?
           1 : -1   
@@ -67,13 +68,18 @@ export default function App() {
       return setJobs(sortedJobs);
   }
 
+  useEffect(() => {
+    //Call API 
+    getJobs();
+  }, [])
+
   return (
     <Router>
       <GlobalStyle/>
         <Navbar/>
         <Route exact path="/" component={Landing} /> 
         <Route path="/jobs" exact>
-          <Jobs allJobs={jobs} filter={filterJobs} sort={sortJobs} getJobs={getJobs} />
+          <Jobs allJobs={jobs} filter={filterJobs} sort={sortJobs} />
        </Route>
     </Router>
   );
