@@ -9,3 +9,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * axios
 * express
 * redis
+* styled components
